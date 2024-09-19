@@ -8,7 +8,8 @@ export default defineEventHandler(async () => {
     const feed = await parser.parseURL(url);
 
     return feed.items.map(item => ({
-      title: item.title,   
+      title: item.title,
+      author: item.creator,
       link: item.link,
       pubDate: item.pubDate,
       description: item.contentSnippet,
