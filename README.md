@@ -1,8 +1,8 @@
 # Task
 
-Develop an application to display a news feed from the following [URL]: (http://static.feed.rbc.ru/rbc/logical/footer/news.rss).
+Develop an application to display a news feed from the following URL: (http://static.feed.rbc.ru/rbc/logical/footer/news.rss).
 
-## Page Layout Requirements:
+## Page layout requirements:
 
 1. A header with the application title.
 2. A block with filters for date and matching words in the news headlines.
@@ -14,7 +14,7 @@ c. The headline should be clickable and lead to a separate page with the full ne
 d. Limit the number of news items per page to no more than 5.
 4. Pagination block.
 
-## Page Layout Requirements for Individual News Item:
+## Page layout requirements for individual news item:
 1. Headline.
 2. A block with the publication date and author's name (if available).
 3. News summary.
