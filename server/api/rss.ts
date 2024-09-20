@@ -14,6 +14,7 @@ export default defineEventHandler(async () => {
       pubDate: item.pubDate,
       description: item.contentSnippet,
     }))
+    
   } catch (error) {
     console.error('Ошибка при парсинге RSS:', error);
 

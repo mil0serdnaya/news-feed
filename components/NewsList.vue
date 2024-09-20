@@ -13,19 +13,26 @@ const formattedNews = computed(() => {
 
 <template>
   <section>
-    <div v-if="isFetching">Загрузка новостей...</div>
-    <div v-else-if="error">Ошибка при загрузке новостей.</div>
-    <div v-else>
+    <template v-if="isFetching">
+      <div>Загрузка новостей...</div>
+    </template>
+
+    <template v-else-if="error">
+      <div>Ошибка при загрузке новостей.</div>
+    </template>
+
+    <template v-else>
       <ul>
-        <li v-for="(article, index) in formattedNews" :key="index">
-          <p>{{ article.pubDate }}</p>
-          <a :href="article.link" target="_blank">{{ article.title }}</a>
-          <p>{{ article.description }}</p>
-        </li>
+        <NewsListItem
+          v-for="(article, index) in formattedNews"
+          :key="index"
+          :article="article"
+        />
       </ul>
-    </div>
+    </template>
   </section>
 </template>
+
 
 <style scoped lang="scss">
 
