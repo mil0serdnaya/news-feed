@@ -7,13 +7,20 @@ export default defineEventHandler(async () => {
   try {
     const feed = await parser.parseURL(url);
 
-    return feed.items.map(item => ({
+    return feed.items
+    .map(item => ({
       title: item.title,
       author: item.creator,
       link: item.link,
-      pubDate: item.pubDate,
+      pubDate: item.pubDate || '',
       description: item.contentSnippet,
     }))
+    .sort((a, b) => {
+      const dateA = new Date(a.pubDate).getTime();
+      const dateB = new Date(b.pubDate).getTime();
+      
+      return (isNaN(dateB) ? 0 : dateB) - (isNaN(dateA) ? 0 : dateA);
+    });
     
   } catch (error) {
     console.error('Ошибка при парсинге RSS:', error);
