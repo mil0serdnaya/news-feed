@@ -15,27 +15,14 @@ export const useNewsStore = defineStore('news', {
     async fetchNews() {
       this.isLoading = true;
       try {
-        const { data } = await useFetch<NewsItem[]>('/api/news', {
-          method: 'GET',
-        });
+        const { data } = await useFetch<NewsItem[]>('/api/news');
         this.news = data.value || [];
+        return this.news;
       } catch (error) {
         this.error = 'Ошибка при получении новостей';
+        return [];
       } finally {
         this.isLoading = false;
-      }
-    },
-    filterByDate() {
-      if (this.startDate && this.endDate) {
-        const start = new Date(this.startDate).getTime();
-        const end = new Date(this.endDate).getTime();
-
-        this.filteredByDate = this.news.filter(item => {
-          const pubDate = new Date(item.pubDate).getTime();
-          return pubDate >= start && pubDate <= end;
-        });
-      } else {
-        this.filteredByDate = this.news;
       }
     }
   }

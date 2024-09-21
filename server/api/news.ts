@@ -12,13 +12,7 @@ export default defineEventHandler(async () => {
         title: item.title ?? 'Без названия',
         author: item.creator ?? 'Неизвестный автор',
         link: item.link ?? '#',
-        pubDate: item.pubDate 
-          ? new Date(item.pubDate).toLocaleDateString('ru-RU', {
-              day: '2-digit',
-              month: '2-digit',
-              year: 'numeric'
-            })
-          : '',
+        pubDate: item.pubDate ? new Date(item.pubDate).toISOString() : '',
         description: item.contentSnippet ?? 'Нет описания',
       }))
       .sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());

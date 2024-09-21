@@ -1,7 +1,4 @@
 <script setup>
-const startDate = ref<string | null>(null);
-const endDate = ref<string | null>(null);
-const newsStore = useNewsStore();
 </script>
 
 <template>
