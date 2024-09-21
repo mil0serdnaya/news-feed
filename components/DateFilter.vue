@@ -7,17 +7,14 @@ const endDate = ref(null);
   <div>
       <v-date-picker
         width="300"
-        v-model="startDate"
-        @input="filterByDate">
+        v-model="startDate">
         <template #title>
           Выберите начальную дату
         </template>
       </v-date-picker>
-
       <v-date-picker
         width="300"
-        v-model="endDate"
-        @input="filterByDate">
+        v-model="endDate">
         <template #title>
           Выберите конечную дату
         </template>
