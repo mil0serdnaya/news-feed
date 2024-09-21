@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia';
 import type { NewsItem } from '~/types/news';
-import Parser from 'rss-parser';
 
 export const useNewsStore = defineStore('news', {
   state: () => ({
@@ -14,22 +13,14 @@ export const useNewsStore = defineStore('news', {
 
   actions: {
     async fetchNews() {
+      this.isLoading = true;
       try {
-        const parser = new Parser();
-        const url = 'http://static.feed.rbc.ru/rbc/logical/footer/news.rss';
-        const feed = await parser.parseURL(url);
-
-        this.news = feed.items
-          .map(item => ({
-            title: item.title ?? 'Без названия',
-            author: item.creator ?? 'Неизвестный автор',
-            link: item.link ?? '#',
-            pubDate: item.pubDate ? new Date(item.pubDate).toISOString() : '',
-            description: item.contentSnippet ?? 'Нет описания',
-          }))
-          .sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
+        const { data } = await useFetch<NewsItem[]>('/api/news', {
+          method: 'GET',
+        });
+        this.news = data.value || [];
       } catch (error) {
-        this.error = 'Ошибка при получении RSS';
+        this.error = 'Ошибка при получении новостей';
       } finally {
         this.isLoading = false;
       }
