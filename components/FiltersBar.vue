@@ -3,9 +3,10 @@
 </script>
 
 <template>
-  <FiltersBar />
-  <NewsList />
-  <v-pagination :length="4"></v-pagination>
+  <div>
+    <DateFilter />
+    <WordFilter />
+  </div>
 </template>
 
 <style scoped>
