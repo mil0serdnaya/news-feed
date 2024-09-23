@@ -9,6 +9,8 @@ export const useNewsStore = defineStore('news', {
     error: null as string | null,
     startDate: null as string | null,
     endDate: null as string | null,
+    currentPage: 1,
+    itemsPerPage: 5,
   }),
 
   actions: {
@@ -20,10 +22,22 @@ export const useNewsStore = defineStore('news', {
         return this.news;
       } catch (error) {
         this.error = 'Ошибка при получении новостей';
-        return [];
       } finally {
         this.isLoading = false;
       }
+    },
+    changePage(page: number) {
+      this.currentPage = page;
     }
+  },
+
+  getters: {
+    paginatedNews: (state) => {
+      const start = (state.currentPage - 1) * state.itemsPerPage;
+      return state.news.slice(start, start + state.itemsPerPage);
+    },
+    totalPages: (state) => {
+      return Math.ceil(state.news.length / state.itemsPerPage);
+    },
   }
-})
+});

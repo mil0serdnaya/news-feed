@@ -2,6 +2,7 @@
 const newsStore = useNewsStore();
 
 const { data: news, error } = await useAsyncData('news', () => newsStore.fetchNews());
+
 </script>
 
 <template>
@@ -12,8 +13,12 @@ const { data: news, error } = await useAsyncData('news', () => newsStore.fetchNe
     Загрузка новостей...
   </div>
   <div v-else>
-    <NewsList :news="news"/>
-    <v-pagination :length="Math.ceil(news.length / 5)"></v-pagination>
+    <NewsList :news="newsStore.paginatedNews" />
+    <v-pagination 
+      v-model="newsStore.currentPage" 
+      :length="newsStore.totalPages" 
+      @input="newsStore.changePage"
+    />
   </div>
 </template>
 
