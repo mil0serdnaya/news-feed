@@ -6,7 +6,7 @@ defineProps(['article']);
   <article>
     <div>
       <p>{{ article.pubDate }}</p>
-      <a :href="article.link" target="_blank">{{ article.title }}</a>
+      <NuxtLink :to="`/news/${article.id}`">{{ article.title }}</NuxtLink>
       <p>{{ article.description }}</p>
     </div>
   </article>

@@ -4,7 +4,7 @@
 
 <template>
   <header>
-    <h1>Лента новостей</h1>
+    <h1>Новости РБК</h1>
   </header>
 </template>
 
