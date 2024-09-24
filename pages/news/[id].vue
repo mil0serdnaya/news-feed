@@ -13,8 +13,9 @@ if (!article.value) {
 <template>
   <div v-if="article">
     <h1>{{ article.title }}</h1>
-    <p>{{ article.pubDate }}</p>
+    <p>{{ article.pubDate }}, {{ article.author }}</p>
     <p>{{ article.description }}</p>
+    <a :href="article.link">{{ article.link }}</a>
   </div>
   <div v-else>
     <p>Новость не найдена</p>

@@ -3,7 +3,7 @@ export interface NewsItem {
   title: string;
   author: string;
   link: string;
-  imageUrl: string;
+  imageUrls: string[];
   pubDate: string | Date;
   isoDate: string | Date;
   description: string;

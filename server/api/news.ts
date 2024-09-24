@@ -16,22 +16,31 @@ export default defineEventHandler(async () => {
   try {
     const feed = await parser.parseURL(url);
     const news: NewsItem[] = feed.items
-      .map(item => ({
-        id: item.guid ?? '',
-        title: item.title ?? 'Без названия',
-        author: item.creator ?? 'Неизвестный автор',
-        link: item.link ?? '#',
-        imageUrl: item.enclosure?.url ?? '',
-        pubDate: item.pubDate ? formatDate(item.pubDate) : '',
-        isoDate: item.isoDate ?? '',
-        description: item.contentSnippet ?? 'Нет описания',
-      }))
+      .map(item => {
+        let imageUrls: string[] = [];
+        
+        if (item.enclosure) {
+          imageUrls.push(item.enclosure.url);
+        }
+
+        return {
+          id: item.guid ?? '',
+          title: item.title ?? 'Без названия',
+          author: item.creator ?? 'Неизвестный автор',
+          link: item.link ?? '#',
+          imageUrls,
+          pubDate: item.pubDate ? formatDate(item.pubDate) : '',
+          isoDate: item.isoDate ?? '',
+          description: item.contentSnippet ?? 'Нет описания',
+        };
+      })
       .sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
+
     return news;
   } catch (error) {
     throw createError({
       status: 500,
       message: 'Ошибка при получении RSS'
-    })
+    });
   }
 });
