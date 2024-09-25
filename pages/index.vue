@@ -2,17 +2,17 @@
 const newsStore = useNewsStore();
 
 const { data: news, error } = await useAsyncData('news', () => newsStore.fetchNews());
-
 </script>
 
 <template>
   <div v-if="error">
-    {{ error.message }}
+    {{ error }}
   </div>
-  <div v-else-if="!news">
+  <div v-else-if="newsStore.isLoading">
     Загрузка новостей...
   </div>
   <div v-else>
+    <WordFilter />
     <NewsList :news="newsStore.paginatedNews" />
     <v-pagination 
       v-model="newsStore.currentPage" 
@@ -21,7 +21,3 @@ const { data: news, error } = await useAsyncData('news', () => newsStore.fetchNe
     />
   </div>
 </template>
-
-<style scoped>
-
-</style>
