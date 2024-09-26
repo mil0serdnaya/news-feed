@@ -2,7 +2,13 @@ import Parser from "rss-parser";
 import type { NewsItem } from "~/types/news";
 
 export default defineEventHandler(async () => {
-  const parser = new Parser();
+  const parser = new Parser({
+    customFields: {
+      item: [
+        ['enclosure', { keepArray: true }]
+      ]
+    }
+  });
   const url = 'http://static.feed.rbc.ru/rbc/logical/footer/news.rss';
 
   const formatDate = (dateStr: string) => {
@@ -18,15 +24,19 @@ export default defineEventHandler(async () => {
     const news: NewsItem[] = feed.items
       .map(item => {
         let imageUrls: string[] = [];
-        
-        if (item.enclosure) {
+        // TODO: Сссабака все равно возвращает объект с одной ссылкой, попробовать xml2js и руками 
+        if (Array.isArray(item.enclosure)) {
+          imageUrls = item.enclosure
+            .filter(enc => enc.url && enc.type.startsWith('image/'))
+            .map(enc => enc.url);
+        } else if (item.enclosure && item.enclosure.url) {
           imageUrls.push(item.enclosure.url);
         }
 
         return {
           id: item.guid ?? '',
           title: item.title ?? 'Без названия',
-          author: item.creator ?? 'Неизвестный автор',
+          author: item.creator ?? '',
           link: item.link ?? '#',
           imageUrls,
           pubDate: item.pubDate ? formatDate(item.pubDate) : '',

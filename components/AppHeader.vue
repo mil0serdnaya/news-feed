@@ -1,13 +1,14 @@
-<script setup>
-
-</script>
-
 <template>
-  <header>
-    <h1>Главные новости РБК</h1>
+  <header class="app-header">
+    <NuxtLink :to="'/'">
+      <h1 class="app-title">Главные новости РБК</h1>
+    </NuxtLink>
   </header>
 </template>
 
-<style scoped lang="scss">
-
+<style scoped>
+.app-header {
+  margin: 30px 0;
+  text-align: center;
+}
 </style>
