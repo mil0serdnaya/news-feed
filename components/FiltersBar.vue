@@ -1,14 +1,15 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
-  <div>
-    <DateFilter />
+  <section class="filters">
     <WordFilter />
-  </div>
+    <DateFilter />
+  </section>
 </template>
 
-<style scoped>
-
+<style>
+.filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
 </style>

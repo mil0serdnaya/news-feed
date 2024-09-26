@@ -4,7 +4,7 @@ defineProps(['news'])
 
 <template>
   <section>
-    <ul>
+    <ul class="news-list">
       <NewsListItem
         v-for="(article, index) in news"
         :key="index"
@@ -16,5 +16,8 @@ defineProps(['news'])
 
 
 <style scoped lang="scss">
-
+  .news-list {
+    display: grid;
+    gap: 16px;
+  }
 </style>

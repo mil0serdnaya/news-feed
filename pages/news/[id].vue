@@ -34,13 +34,12 @@ const openImage = (imageUrl: string) => {
       v-if="article.imageUrls.length" 
       class="image-carousel"
       :show-arrows="article.imageUrls.length > 1"
-      hide-delimiters
-    >
+      hide-delimiters>
+
       <v-carousel-item
         v-for="(imageUrl, index) in article.imageUrls"
         :key="index"
-        cover
-      >
+        cover>
         <nuxt-img
           :src="imageUrl"
           lazy

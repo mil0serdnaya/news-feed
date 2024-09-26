@@ -18,6 +18,7 @@ export const useNewsStore = defineStore('news', () => {
       const { data } = await useFetch<NewsItem[]>('/api/news');
       news.value = data.value || [];
       applyFilter();
+      return news;
     } catch {
       error.value = 'Ошибка при получении новостей';
     } finally {
@@ -35,7 +36,7 @@ export const useNewsStore = defineStore('news', () => {
     applyFilter();
   };
 
-  const setDateFilter = ({ startDate: newStartDate, endDate: newEndDate }: { startDate: Date | null; endDate: Date | null }) => {
+  const setDateFilter = ({ startDate: newStartDate, endDate: newEndDate } : { startDate: Date | null; endDate: Date | null }) => {
     startDate.value = newStartDate;
     endDate.value = newEndDate;
     applyFilter();
