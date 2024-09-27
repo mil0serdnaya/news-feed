@@ -2,7 +2,6 @@
 import { useNewsStore } from '~/stores/newsStore';
 
 const newsStore = useNewsStore();
-
 const selectedStartDate = ref<Date | null>(null);
 const selectedEndDate = ref<Date | null>(null);
 
@@ -21,31 +20,17 @@ const resetDateFilter = () => {
   <div class="date-filter">
     <v-row>
       <v-col cols="12" sm="6">
-        <v-date-picker 
-          v-model="selectedStartDate"
-          title="Дата начала"
-          :max="selectedEndDate"
-          class="mb-4"
-        />
+        <v-date-picker v-model="selectedStartDate" title="Дата начала" :max="selectedEndDate" class="mb-4" />
       </v-col>
       <v-col cols="12" sm="6">
-        <v-date-picker 
-          v-model="selectedEndDate"
-          title="Дата конца"
-          :min="selectedStartDate"
-          class="mb-4"
-        />
+        <v-date-picker v-model="selectedEndDate" title="Дата конца" :min="selectedStartDate" class="mb-4" />
       </v-col>
     </v-row>
-
-    <v-btn color="primary" @click="applyDateFilter" class="mr-4">
-      Применить фильтр
-    </v-btn>
-    <v-btn color="secondary" @click="resetDateFilter">
-      Сбросить фильтр
-    </v-btn>
+    <v-btn color="primary" class="mr-4" @click="applyDateFilter">Применить фильтр</v-btn>
+    <v-btn color="secondary" @click="resetDateFilter">Сбросить фильтр</v-btn>
   </div>
 </template>
+
 
 <style lang="scss">
 .date-filter {

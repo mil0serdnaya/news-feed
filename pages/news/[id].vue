@@ -7,10 +7,6 @@ const articleId = route.params.id;
 
 const article = computed(() => newsStore.news.find(item => item.id === articleId));
 
-if (!article.value) {
-  await newsStore.fetchNews();
-}
-
 const isDialogOpen = ref(false);
 const selectedImage = ref<string | undefined>(undefined);
 
@@ -18,35 +14,22 @@ const openImage = (imageUrl: string) => {
   selectedImage.value = imageUrl;
   isDialogOpen.value = true;
 };
+
+if (!article.value) {
+  await newsStore.fetchNews();
+}
 </script>
 
 <template>
   <div v-if="article" class="article-container">
     <h2 class="article-title">{{ article.title }}</h2>
-
     <p class="article-meta">{{ formatDate(article.pubDate) }} {{ article.author }}</p>
-
     <p class="article-description">{{ article.description }}</p>
-
     <a :href="article.link" class="article-link" target="_blank" rel="noopener noreferrer">{{ article.link }}</a>
-
-    <v-carousel 
-      v-if="article.imageUrls.length" 
-      class="image-carousel"
-      :show-arrows="article.imageUrls.length > 1"
-      hide-delimiters>
-
-      <v-carousel-item
-        v-for="(imageUrl, index) in article.imageUrls"
-        :key="index"
-        cover>
-        <nuxt-img
-          :src="imageUrl"
-          lazy
-          class="carousel-image"
-          @click="openImage(imageUrl)"
-          alt="Image"
-        />
+    
+    <v-carousel v-if="article.imageUrls.length" class="image-carousel" :show-arrows="article.imageUrls.length > 1" hide-delimiters>
+      <v-carousel-item v-for="(imageUrl, index) in article.imageUrls" :key="index" cover>
+        <nuxt-img :src="imageUrl" lazy class="carousel-image" @click="openImage(imageUrl)" alt="Image" />
       </v-carousel-item>
     </v-carousel>
 
@@ -54,7 +37,6 @@ const openImage = (imageUrl: string) => {
       <v-img v-if="selectedImage" :src="selectedImage" alt="Full-size image" />
     </v-dialog>
   </div>
-
   <div v-else>
     <p>Новость не найдена</p>
   </div>

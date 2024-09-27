@@ -5,7 +5,7 @@ defineProps(['news'])
 <template>
   <section>
     <ul class="news-list">
-      <NewsListItem
+      <NewsNewsListItem
         v-for="(article, index) in news"
         :key="index"
         :article="article"

@@ -1,28 +1,21 @@
 <script setup lang="ts">
-const newsStore = useNewsStore();
+import { useNewsStore } from '~/stores/newsStore';
 
+const newsStore = useNewsStore();
 const { data: news, error } = await useAsyncData('news', () => newsStore.fetchNews());
 </script>
 
 <template>
   <div class="news-page">
-    <div v-if="error">
-      {{ error }}
-    </div>
-
-    <div v-else-if="newsStore.isLoading">
-      Загрузка новостей...
-    </div>
-
+    <div v-if="error">{{ error }}</div>
+    <div v-else-if="newsStore.isLoading">Загрузка новостей...</div>
     <div v-else>
-      <FiltersBar />
-
-      <NewsList :news="newsStore.paginatedNews" />
-
+      <FiltersFiltersBar />
+      <NewsNewsList :news="newsStore.paginatedNews" />
       <div class="pagination">
-        <v-pagination 
-          v-model="newsStore.currentPage" 
-          :length="newsStore.totalPages" 
+        <v-pagination
+          v-model="newsStore.currentPage"
+          :length="newsStore.totalPages"
           @input="newsStore.changePage"
         />
       </div>
@@ -32,7 +25,7 @@ const { data: news, error } = await useAsyncData('news', () => newsStore.fetchNe
 
 <style scoped lang="scss">
 .news-page {
-  padding: 16px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 24px;
