@@ -4,7 +4,7 @@ defineProps(['article']);
 
 <template>
   <article class="news-article">
-    <p class="news-article__date">{{ article.pubDate }}</p>
+    <p class="news-article__date">{{ formatDate(article.pubDate) }}</p>
     <NuxtLink :to="`/news/${article.id}`" class="news-article__link">{{ article.title }}</NuxtLink>
     <p class="news-article__description">{{ article.description }}</p>
   </article>

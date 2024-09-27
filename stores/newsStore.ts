@@ -50,26 +50,28 @@ export const useNewsStore = defineStore('news', () => {
 
   const applyFilter = () => {
     let filtered = news.value;
-
+  
     const filter = filterWords.value.toLowerCase();
+  
     if (filter) {
       filtered = filtered.filter((item: NewsItem) =>
         item.title.toLowerCase().includes(filter) || item.description?.toLowerCase().includes(filter)
       );
     }
-
+  
     if (startDate.value || endDate.value) {
       filtered = filtered.filter((item: NewsItem) => {
-        const newsDate = new Date(item.pubDate).getTime();
-        const start = startDate.value ? new Date(startDate.value).getTime() : null;
-        const end = endDate.value ? new Date(endDate.value).getTime() : null;
-
-        return (!start || newsDate >= start) && (!end || newsDate <= end);
+        const newsDate = item.pubDate instanceof Date ? item.pubDate.getTime() : new Date(item.pubDate).getTime();
+        const start = startDate.value ? new Date(startDate.value.setHours(0, 0, 0, 0)).getTime() : null;
+        const end = endDate.value ? new Date(endDate.value.setHours(23, 59, 59, 999)).getTime() : null;
+    
+        return (!start || (newsDate >= start)) && (!end || (newsDate <= end));
       });
     }
 
     filteredNews.value = filtered;
   };
+  
 
   const paginatedNews = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage.value;

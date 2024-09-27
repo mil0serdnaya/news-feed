@@ -24,7 +24,7 @@ const openImage = (imageUrl: string) => {
   <div v-if="article" class="article-container">
     <h2 class="article-title">{{ article.title }}</h2>
 
-    <p class="article-meta">{{ article.pubDate }}, {{ article.author }}</p>
+    <p class="article-meta">{{ formatDate(article.pubDate) }} {{ article.author }}</p>
 
     <p class="article-description">{{ article.description }}</p>
 
@@ -65,9 +65,7 @@ const openImage = (imageUrl: string) => {
   max-width: 800px;
   margin: 0 auto;
   margin-top: 30px;
-  margin-bottom: 30px;
   padding: 20px;
-  font-family: Arial, sans-serif;
   color: #333;
   background-color: #fff;
   border-radius: 10px;

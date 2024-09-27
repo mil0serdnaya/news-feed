@@ -5,6 +5,5 @@ export interface NewsItem {
   link: string;
   imageUrls: string[];
   pubDate: string | Date;
-  isoDate: string | Date;
   description: string;
 }
