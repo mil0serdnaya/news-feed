@@ -51,7 +51,7 @@ Application uses RBC's RSS feed: http://static.feed.rbc.ru/rbc/logical/footer/ne
 
 1. Clone the repository:
    ```bash
-   git clone [repository-url]
+   git clone [https://github.com/mil0serdnaya/news-feed.git]
 
 2. Install dependencies:
    ```bash
