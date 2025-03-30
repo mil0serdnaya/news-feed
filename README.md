@@ -50,17 +50,21 @@ Application uses RBC's RSS feed: http://static.feed.rbc.ru/rbc/logical/footer/ne
 ## 🚀 Installation & Setup
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/mil0serdnaya/news-feed.git
 
 2. Install dependencies:
+
    ```bash
    npm install
 
 3. Run in development mode:
+
    ```bash
    npm run dev
 
 4. For production build:
+
    ```bash
    npm run build
