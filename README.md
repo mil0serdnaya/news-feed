@@ -1,27 +1,66 @@
-# Task
+# RBC News Feed Application
 
-Develop an application to display a news feed from the following URL: (http://static.feed.rbc.ru/rbc/logical/footer/news.rss).
+A Vue.js application for displaying and filtering news from RBC's RSS feed with pagination functionality.
 
-## Page layout requirements:
+Application uses RBC's RSS feed: http://static.feed.rbc.ru/rbc/logical/footer/news.rss
 
-1. A header with the application title.
-2. A block with filter for matching words in the news headlines.
+## 📌 Features
 
-3. News list:
-a. Sort from newest to oldest.
-b. Each news item should display the date, headline, and summary.
-c. The headline should be clickable and lead to a separate page with the full news details.
-d. Limit the number of news items per page to no more than 5.
-4. Pagination block.
+### 🏠 Main Page
 
-## Page layout requirements for individual news item:
-1. Headline.
-2. A block with the publication date and author's name (if available).
-3. News summary.
-4. A list of photos (if available). The photos should be displayed as a slider with the ability to view enlarged images in a popup.
-5. A link to the original news article on the RBC website.
+1. **Application Header**
+   - App title
+   - News refresh capability
 
-## Requirements:
+2. **News Filter**
+   - Keyword input field
+   - Real-time headline filtering
 
-1. Stack: Vue3 (Composition API), Nuxt3.
-2. Visual design is up to you. It is a plus to use the Vuetify library.
+3. **News List**
+   - Sorted by date (newest first)
+   - Each news item displays:
+     - Publication date
+     - Clickable headline (links to detail page)
+     - Brief description
+   - Pagination with max 5 items per page
+
+4. **Pagination Controls**
+   - Page navigation
+   - Current page indicator
+
+### 📄 News Detail Page
+
+1. **Headline**
+2. **Metadata**
+   - Publication date
+   - Author name (when available)
+3. **Full news content**
+4. **Image Gallery** (when available)
+   - Slider
+   - Fullscreen view capability
+5. **Link to original article** on RBC website
+
+## 🛠 Technical Requirements
+
+**Tech Stack:**
+- Vue 3 (Composition API)
+- Nuxt 3
+- Vuetify recommended for UI components
+
+## 🚀 Installation & Setup
+
+1. Clone the repository:
+   ```bash
+   git clone [repository-url]
+
+2. Install dependencies:
+   ```bash
+   npm install
+
+3. Run in development mode:
+   ```bash
+   npm run dev
+
+4. For production build:
+   ```bash
+   npm run build
