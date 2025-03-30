@@ -19,5 +19,4 @@ watch(filterText, (newVal) => {
 </template>
 
 <style scoped>
-/* Стили по необходимости */
 </style>

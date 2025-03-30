@@ -5,7 +5,7 @@ Develop an application to display a news feed from the following URL: (http://st
 ## Page layout requirements:
 
 1. A header with the application title.
-2. A block with filters for date and matching words in the news headlines.
+2. A block with filter for matching words in the news headlines.
 
 3. News list:
 a. Sort from newest to oldest.
